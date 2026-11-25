@@ -15,6 +15,7 @@ const lookup = {
 };
 for (const t of jd.terms) lookup[`term.${t.label}`] = t.pct;
 const Y = data.years;
+lookup["rej.n"] = data.rej.n;
 Object.assign(lookup, { "years.n": Y.n, "years.median": Y.median, "years.myYears": Y.myYears, "years.max": Y.max });
 document.querySelectorAll("[data-k]").forEach((el) => { const v = lookup[el.dataset.k]; if (v != null) el.textContent = v; });
 $("#everyN").textContent = Math.round(jd.mostAI.words / jd.mostAI.aiCount);
@@ -174,67 +175,59 @@ const runs = {
   },
 };
 
-// ---------- loading dialog before each window opens ----------
-const loader = document.createElement("div");
-loader.className = "loader";
-loader.setAttribute("aria-hidden", "true");
-loader.innerHTML = `<div class="loader__bar"><span>PLEASE WAIT</span></div><div class="loader__body"><span class="loader__glass"></span><div><p class="loader__t"></p><div class="loader__prog"><span></span></div></div></div>`;
-document.body.append(loader);
-const loadingQuips = ["Loading", "Opening", "Defragmenting", "Buffering feelings for", "Asking permission to open", "Reticulating"];
-let busy = Promise.resolve();
-function showLoader(name) {
-  if (reduced) return Promise.resolve();
-  busy = busy.then(async () => {
-    loader.querySelector(".loader__t").textContent = `${loadingQuips[Math.floor(Math.random() * loadingQuips.length)]} ${name}...`;
-    const fill = loader.querySelector(".loader__prog span");
-    fill.style.width = "0%";
-    loader.classList.add("on");
-    document.body.classList.add("waiting");
-    for (const p of [18, 34, 35, 35, 61, 88, 100]) { fill.style.width = p + "%"; await sleep(70 + Math.random() * 60); }
-    loader.classList.remove("on");
-    document.body.classList.remove("waiting");
-  });
-  return busy;
-}
-
 const io = new IntersectionObserver((entries) => {
   for (const e of entries) {
     if (!e.isIntersecting) continue;
     io.unobserve(e.target);
     const win = e.target.querySelector(".win") || e.target;
-    const name = win.querySelector(".win__title")?.textContent || "PROGRAM";
-    showLoader(name).then(() => {
-      win.classList.add("is-open");
-      const run = runs[e.target.id];
-      if (run) setTimeout(run, reduced ? 0 : 320);
-    });
+    win.classList.add("is-open");
+    const run = runs[e.target.id];
+    if (run) setTimeout(run, reduced ? 0 : 320);
   }
 }, { threshold: 0.35 });
 document.querySelectorAll(".scene").forEach((s) => io.observe(s));
 
-// ---------- the old machine is not well: random glitches ----------
-if (!reduced) {
-  const inView = (el) => { const r = el.getBoundingClientRect(); return r.bottom > 60 && r.top < innerHeight - 60; };
-  const glitchOnce = () => {
-    const wins = [...document.querySelectorAll(".win.is-open")].filter(inView);
-    if (wins.length && document.visibilityState === "visible") {
-      const w = wins[Math.floor(Math.random() * wins.length)];
-      const title = w.querySelector(".win__title");
-      if (Math.random() < 0.3 && title && !title.dataset.frozen) {
-        // the classic: window stops responding for a moment
-        title.dataset.frozen = title.textContent;
-        title.textContent += " (Not Responding)";
-        w.classList.add("frozen");
-        setTimeout(() => { title.textContent = title.dataset.frozen; delete title.dataset.frozen; w.classList.remove("frozen"); }, 1600);
-      } else {
-        w.classList.add("glitch");
-        setTimeout(() => w.classList.remove("glitch"), 380);
-      }
-    }
-    setTimeout(glitchOnce, 6000 + Math.random() * 7000);
-  };
-  setTimeout(glitchOnce, 5000);
-}
+// ---------- rejection anatomy ----------
+const R = data.rej;
+const ph = (label) => R.phrases.find((p) => p.label === label) || { n: 0, pct: 0 };
+$("#blameBars").innerHTML = R.blame.filter((b) => b.n > 0).map((b, i) => `<div class="bar${i === 0 ? " bar--hot" : ""}"><span>${b.label}</span><span class="bar__track"><span class="bar__fill" data-w="${Math.round((100 * b.n) / R.n)}"></span></span><span class="bar__pct">${b.n}</span></div>`).join("");
+$("#noReason").textContent = R.blame[0].n;
+$("#noReasonPct").textContent = Math.round((100 * R.blame[0].n) / R.n);
+$("#complimentN").textContent = ph("Your background is impressive, but...").n;
+const tag = (label) => `<span class="mail__tag">${ph(label).n} of ${R.n}</span>`;
+$("#mailBody").innerHTML = `
+  <p><mark class="mail__hl">Thank you for your time</mark>${tag("Thank you for your time")} and interest in the role.</p>
+  <p><mark class="mail__hl">After careful consideration</mark>${tag("After careful consideration")}, we've decided to <mark class="mail__hl">move forward with other candidates</mark>${tag("We've decided to move forward with other candidates")} <mark class="mail__hl">at this time</mark>${tag("At this time")}.</p>
+  <p><mark class="mail__hl">We'll keep your details on file</mark>${tag("We'll keep your details on file")} for future opportunities.</p>
+  <p><mark class="mail__hl">We wish you the best of luck</mark>${tag("We wish you the best of luck")} in your search.</p>
+  <p class="mail__sig">The Talent Team<br><span class="mail__no">no-reply@</span></p>`;
+runs.anatomy = async () => {
+  $("#blameBars").querySelectorAll(".bar__fill").forEach((f, i) => setTimeout(() => (f.style.width = f.dataset.w + "%"), reduced ? 0 : i * 120));
+};
+
+// ---------- the REJECTIONS pile ----------
+const rejModal = $("#rejModal");
+const pile = $("#rejPile");
+pile.innerHTML = R.phrases.map((p, i) => `<span class="slip" style="--r:${((i * 37) % 9) - 4}deg">"${p.label}" <b>${p.n}</b></span>`).join("");
+const parts = {
+  open: ["Thank you for your time.", "Thank you for your interest in the role.", "We truly appreciate the time and effort you put into your application."],
+  mid: ["After careful consideration,", "After carefully reviewing your application,", "We received a high volume of applications and,"],
+  verdict: ["we've decided to move forward with other candidates", "we've chosen to pursue candidates who more closely match our needs", "we won't be moving forward with your application", "we regret to inform you that you were not selected"],
+  when: [" at this time.", " at this point.", "."],
+  file: ["We'll keep your details on file.", "We encourage you to apply for future roles.", "Please keep an eye on our careers page."],
+  close: ["We wish you the best of luck in your search.", "We wish you every success.", "All the best."],
+};
+const pick = (a) => a[Math.floor(Math.random() * a.length)];
+$("#rejGen").addEventListener("click", () => {
+  $("#rejOut").textContent = `${pick(parts.open)} ${pick(parts.mid)} ${pick(parts.verdict)}${pick(parts.when)} ${pick(parts.file)} ${pick(parts.close)}`;
+});
+let rejLast = null;
+const openRej = () => { rejLast = document.activeElement; rejModal.hidden = false; $("#rejClose").focus(); };
+const closeRej = () => { rejModal.hidden = true; rejLast?.focus(); };
+$("#openRejections").addEventListener("click", openRej);
+$("#rejClose").addEventListener("click", closeRej);
+rejModal.addEventListener("click", (e) => { if (e.target === rejModal) closeRej(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !rejModal.hidden) closeRej(); });
 
 
 // ---------- the punchline buttons ----------
@@ -262,7 +255,7 @@ const resume = await fetch("./resume.json").then((r) => r.json());
 let vocab = null;
 const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 const reEsc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-const termRe = (q) => new RegExp(`(^|[^a-z0-9])(${reEsc(q)})(?=$|[^a-z0-9])`, "gi");
+const termRe = (q) => new RegExp(`(^|[^a-z0-9])(${reEsc(q)})`, "gi");
 
 let view = "keywords";
 let lastQ = "";
@@ -279,6 +272,7 @@ function renderResume(q = lastQ) {
   const sec = resume.sections.map((s) => `<h4>${esc(s.title.toUpperCase())}</h4>${s.items.map((it) => `${it.head ? `<h5>${hl(it.head)}</h5>` : ""}<ul>${it.points.map((p) => `<li>${hl(p)}</li>`).join("")}</ul>`).join("")}`).join("");
   $("#resumeDoc").innerHTML = `${top}<p>${hl(resume.summary)}</p>${sec}`;
 }
+const scrollToHit = () => { const h = $("#resumeDoc").querySelector("mark, .kw.hit"); if (h) h.scrollIntoView({ block: "center", behavior: "smooth" }); };
 renderResume();
 
 const viewHints = { keywords: "the version the robots read", normal: "the version a human would read (if one ever did)" };
@@ -290,7 +284,7 @@ document.querySelectorAll(".toggle__btn").forEach((b) => b.addEventListener("cli
 }));
 
 // counts always come from the full resume, whichever view is showing
-const resumeText = [resume.headline, resume.summary, ...resume.sections.flatMap((s) => s.items.flatMap((i) => [i.head, ...i.points]))].join(" \n ");
+const resumeText = [resume.headline, resume.summary, ...resume.keywords.map((k) => k[0]), ...resume.sections.flatMap((s) => s.items.flatMap((i) => [i.head, ...i.points]))].join(" \n ");
 const norm = (q) => q.toLowerCase().replace(/[^a-z0-9+#./\- ]+/g, " ").trim().split(/\s+/).filter(Boolean).join(" ");
 
 async function search(raw) {
@@ -303,10 +297,18 @@ async function search(raw) {
   const key = norm(q);
   const words = key.split(" ").length;
   // keep "AI" consistent with the chart, which also counts ML, LLMs and agents
-  const aiTerm = key === "ai" ? jd.terms.find((x) => x.label === "AI") : null;
-  const n = aiTerm ? Math.round((aiTerm.pct / 100) * vocab.n) : words <= 2 ? vocab.df[key] || 0 : null;
+  // reuse the chart number whenever the search matches a charted term, so the two never disagree
+  const singular = (x) => x.replace(/s$/, "");
+  const aiTerm = key === "ai" ? jd.terms.find((x) => x.label === "AI") : jd.terms.find((x) => singular(x.label.toLowerCase()) === singular(key));
+  let shown = q;
+  let n = aiTerm ? Math.round((aiTerm.pct / 100) * vocab.n) : words <= 2 ? vocab.df[key] || 0 : null;
+  if (n === 0 && words === 1 && key.length >= 3) {
+    let best = null;
+    for (const [k, v] of Object.entries(vocab.df)) if (!k.includes(" ") && k.startsWith(key) && (!best || v > best[1])) best = [k, v];
+    if (best) { n = best[1]; shown = best[0]; }
+  }
   const pct = aiTerm ? aiTerm.pct : n != null ? Math.round((100 * n) / vocab.n) : null;
-  const them = n == null ? "" : n === 0 ? "No job description asked for it" : `${pct}% of job descriptions wanted it (${n} of ${vocab.n})`;
+  const them = n == null ? "" : n === 0 ? "No job description asked for it" : `${pct}% of job descriptions wanted ${shown.toLowerCase() === q.toLowerCase() ? "it" : `"${shown}"`} (${n} of ${vocab.n})`;
   let msg;
   if (n == null) msg = mine ? `Found ${mine} time${mine > 1 ? "s" : ""} in my resume. Too long to check against the job descriptions, try one or two words.` : "Not in my resume. Try one or two words.";
   else if (mine && n) msg = `Found ${mine} time${mine > 1 ? "s" : ""} in my resume. ${them}. So... interview?`;
@@ -314,6 +316,7 @@ async function search(raw) {
   else if (mine && !n) msg = `Found ${mine} time${mine > 1 ? "s" : ""} in my resume. ${them}. Typical.`;
   else msg = "Nobody has this. Not me, not them. A rare moment of equality.";
   out.textContent = msg;
+  scrollToHit();
 }
 
 const modal = $("#resumeModal");
@@ -325,5 +328,8 @@ $("#closeResume").addEventListener("click", closeResume);
 modal.addEventListener("click", (e) => { if (e.target === modal) closeResume(); });
 document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !modal.hidden) closeResume(); });
 let t;
-$("#kw").addEventListener("input", (e) => { clearTimeout(t); t = setTimeout(() => search(e.target.value), 160); });
+const onType = (e) => { clearTimeout(t); t = setTimeout(() => search(e.target.value), 160); };
+$("#kw").addEventListener("input", onType);
+$("#kw").addEventListener("search", onType);
+$("#kw").addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); clearTimeout(t); search(e.target.value); } });
 document.querySelectorAll(".chip").forEach((c) => c.addEventListener("click", () => { $("#kw").value = c.textContent; search(c.textContent); }));

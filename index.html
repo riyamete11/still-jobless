@@ -34,7 +34,7 @@
         <div class="win__body prose">
           <p class="lede">Hi, I'm Riya. I'm a product designer, and in 2026 I became a professional applicant.</p>
           <p>Every job I wanted asked for AI. So I did two things. I scanned <b data-k="jd.n">378</b> design job descriptions to see what the market actually wants. Then I opened my inbox to see what the market thought of me.</p>
-          <p>This is the report. It runs on the only computer that still believes in me. (My resume is on the desktop, if you'd like to check it for keywords. Everyone else did.)</p>
+          <p>This is the report. It runs on the only computer that still believes in me. (My resume is on the desktop, if you'd like to check it for keywords. Everyone else did. The rejection pile is right next to it.)</p>
         </div>
       </div>
       <div class="desk-icons">
@@ -42,7 +42,10 @@
           <span class="icon__img icon__img--doc" aria-hidden="true"></span>RESUME_V30.DOC
           <span class="icon__hint">double-click me</span>
         </button>
-        <div class="icon" aria-hidden="true"><span class="icon__img icon__img--trash"></span>REJECTIONS</div>
+        <button type="button" class="icon icon--btn" id="openRejections" aria-haspopup="dialog">
+          <span class="icon__img icon__img--trash" aria-hidden="true"></span>REJECTIONS
+          <span class="icon__hint">43 items</span>
+        </button>
       </div>
     </section>
 
@@ -165,6 +168,29 @@
       </div>
     </section>
 
+    <!-- 7b. REJECTION ANATOMY -->
+    <section class="scene" id="anatomy">
+      <div class="win win--wide" data-open>
+        <div class="win__bar"><span class="win__close" aria-hidden="true"></span><h2 class="win__title">ANATOMY_OF_A_NO.EML</h2></div>
+        <div class="win__body">
+          <div class="prose">
+            <p class="lede">Did they blame me?</p>
+            <p>Mostly, they didn't say anything. <b id="noReason">26</b> of the <span data-k="rej.n">43</span> rejections (<span id="noReasonPct">60</span>%) gave no reason at all. Just a polite no, "at this time".</p>
+          </div>
+          <h3 class="chart-title">The reason given, in <span data-k="rej.n">43</span> rejection emails</h3>
+          <div class="bars" id="blameBars" role="img" aria-label="Reasons given in rejection emails"></div>
+          <h3 class="chart-title">And here is the average one, assembled from the phrases they used most</h3>
+          <div class="mail">
+            <div class="mail__head"><span>From: no-reply@somewhere.com</span><span>Subject: An update on your application</span></div>
+            <div class="mail__body" id="mailBody"></div>
+          </div>
+          <div class="prose">
+            <p><b id="complimentN">9</b> of them complimented me first. "Your background is impressive, but..." is my favourite genre of email.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- 8. REPEAT OFFENDERS -->
     <section class="scene scene--short" id="repeat">
       <div class="win" data-open>
@@ -268,12 +294,11 @@
     <!-- 12. THE ASK -->
     <section class="scene" id="ask">
       <div class="win win--dialog win--big" data-open>
-        <div class="win__bar"><span class="win__close" aria-hidden="true"></span><h2 class="win__title">NOT_A_BOT.EXE</h2></div>
+        <div class="win__bar"><span class="win__close" aria-hidden="true"></span><h2 class="win__title">HUMAN_TO_HUMAN.EXE</h2></div>
         <div class="win__body dialog dialog--stack">
-          <p class="captcha"><span class="captcha__box" aria-hidden="true">x</span> I'm not a robot <span class="captcha__note">(verified, unfortunately)</span></p>
-          <p class="prose lede">I am not an AI. Please stop.</p>
+          <p class="prose lede">Let's talk human to human.</p>
           <p class="prose">In this economy, recruiters have agents reading resumes and candidates have agents writing them. Nobody is talking to anybody.</p>
-          <p class="prose">So this isn't an application. It's just me, a human, working out what happened to my year. If you've lived the same thing, or you sit on the other side of the hiring table, I'd love one conversation about it.</p>
+          <p class="prose">So let's skip all that. No agents, no assessments, no "we'll keep your details on file". Just two humans, thirty minutes, and whatever you're drinking.</p>
           <a class="btn btn--primary" id="bookBtn" href="https://linkedin.com/in/riya-mete-uxd/" target="_blank" rel="noopener">Start a conversation</a>
         </div>
       </div>
@@ -285,6 +310,26 @@
       <p class="shutdown__sub">Riya Mete · product designer · one conversation away <span class="blink">_</span></p>
     </section>
   </main>
+
+  <!-- REJECTIONS POP-UP -->
+  <div class="modal" id="rejModal" hidden>
+    <div class="win win--rej" role="dialog" aria-modal="true" aria-labelledby="rejTitle">
+      <div class="win__bar">
+        <span class="win__close" aria-hidden="true"></span>
+        <h2 class="win__title" id="rejTitle">REJECTIONS (43 ITEMS)</h2>
+        <button type="button" class="win__x" id="rejClose" aria-label="Close rejections">[X] CLOSE</button>
+      </div>
+      <div class="win__body">
+        <p class="rej__big">It's not you. It's us.</p>
+        <p class="rej__sub">(It's also "at this time".) The phrases my rejections used, and how many emails used each one:</p>
+        <div class="pile" id="rejPile"></div>
+        <div class="rej__gen">
+          <button type="button" class="btn" id="rejGen">Generate a rejection</button>
+          <p class="rej__out" id="rejOut" role="status" aria-live="polite">Save a recruiter five minutes. Press the button.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- RESUME POP-UP -->
   <div class="modal" id="resumeModal" hidden>

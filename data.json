@@ -80,8 +80,8 @@
  },
  "me": {
   "sent": 121,
-  "rejected": 45,
-  "silent": 76,
+  "rejected": 43,
+  "silent": 78,
   "humanInterviews": 0,
   "aiInterviews": 1,
   "assessments": 2,
@@ -120,7 +120,7 @@
    {
     "month": "2026-07",
     "sent": 12,
-    "rejected": 4
+    "rejected": 3
    },
    {
     "month": "2026-08",
@@ -140,7 +140,7 @@
    {
     "month": "2026-11",
     "sent": 47,
-    "rejected": 13
+    "rejected": 12
    }
   ],
   "busiestDay": {
@@ -206,5 +206,88 @@
   "myYears": 4,
   "midWanting5": 21,
   "midTotal": 53
+ },
+ "rej": {
+  "n": 43,
+  "phrases": [
+   {
+    "label": "At this time",
+    "n": 25,
+    "pct": 58
+   },
+   {
+    "label": "Thank you for your time",
+    "n": 22,
+    "pct": 51
+   },
+   {
+    "label": "We wish you the best of luck",
+    "n": 22,
+    "pct": 51
+   },
+   {
+    "label": "After careful consideration",
+    "n": 20,
+    "pct": 47
+   },
+   {
+    "label": "We've decided to move forward with other candidates",
+    "n": 15,
+    "pct": 35
+   },
+   {
+    "label": "We'll keep your details on file",
+    "n": 13,
+    "pct": 30
+   },
+   {
+    "label": "Your background is impressive, but...",
+    "n": 9,
+    "pct": 21
+   },
+   {
+    "label": "We received a high volume of applications",
+    "n": 6,
+    "pct": 14
+   },
+   {
+    "label": "Candidates who more closely match",
+    "n": 6,
+    "pct": 14
+   },
+   {
+    "label": "The role is closed / on hold",
+    "n": 2,
+    "pct": 5
+   }
+  ],
+  "blame": [
+   {
+    "label": "No reason given",
+    "n": 26,
+    "who": "nobody"
+   },
+   {
+    "label": "Someone else was better",
+    "n": 9,
+    "who": "the other candidates"
+   },
+   {
+    "label": "Someone else matched better",
+    "n": 6,
+    "who": "my experience (politely)"
+   },
+   {
+    "label": "Too many people applied",
+    "n": 0,
+    "who": "the economy"
+   },
+   {
+    "label": "The job went away",
+    "n": 2,
+    "who": "the job itself"
+   }
+  ],
+  "feedbackGiven": 0
  }
 }

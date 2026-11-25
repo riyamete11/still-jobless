@@ -325,6 +325,26 @@ body.waiting, body.waiting * { cursor: wait !important; }
 .win.frozen .win__body { filter: grayscale(1) contrast(.8); opacity: .75; }
 .win.frozen { cursor: wait; }
 
+/* rejection anatomy: the average email */
+.mail { border: 2px solid var(--ink); background: #fbf8ef; margin: 0 0 22px; }
+.mail__head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; border-bottom: 2px solid var(--ink); padding: 8px 14px; font-size: 18px; color: var(--ink-2); background: var(--paper-2); }
+.mail__body { padding: 16px 18px 18px; font-size: 21px; line-height: 1.55; }
+.mail__body p { margin: 0 0 10px; }
+.mail__hl { background: transparent; color: var(--ink); padding: 0; border-bottom: 3px solid var(--red); }
+.mail__tag { display: inline-block; font: 10px/1.4 var(--label); background: var(--red); color: var(--paper); padding: 1px 5px; margin: 0 4px; vertical-align: 3px; }
+.mail__sig { color: var(--ink-2); margin-top: 14px !important; }
+.mail__no { font-size: 17px; }
+
+/* rejections pop-up */
+.win--rej { width: min(720px, 100%); max-height: calc(100vh - 80px); overflow: auto; }
+.rej__big { font-size: clamp(38px, 6vw, 56px); line-height: 1; margin: 0 0 8px; color: var(--red); }
+.rej__sub { margin: 0 0 18px; color: var(--ink-2); font-size: 20px; }
+.pile { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
+.slip { display: inline-block; background: #fbf8ef; border: 2px solid var(--ink); padding: 6px 10px; font-size: 20px; box-shadow: 3px 3px 0 var(--ink); transform: rotate(var(--r, 0deg)); }
+.slip b { margin-left: 6px; }
+.rej__gen { border-top: 2px dashed var(--ink-2); padding-top: 16px; }
+.rej__out { margin: 14px 0 0; font-size: 21px; min-height: 3em; background: #fbf8ef; border: 2px solid var(--ink); padding: 10px 14px; }
+
 /* shutdown */
 .shutdown { min-height: 100vh; background: #000; color: #f0a640; display: grid; place-content: center; text-align: center; padding: 4vw; }
 .shutdown__text { font-size: clamp(36px, 7vw, 76px); margin: 0 0 14px; }
