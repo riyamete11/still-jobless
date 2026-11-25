@@ -1,0 +1,88 @@
+{
+  "name": "Riya Mete",
+  "headline": "Product Designer | Data-Informed UX, Complex Systems & AI · India, open to relocation",
+  "title": "Product Designer",
+  "subtitle": "Data-Informed UX · Complex Systems · AI",
+  "keywords": [
+    ["4+ Years", 3], ["End-to-End Product Design", 3], ["Population Scale", 3], ["66M+ Downloads", 3],
+    ["+23.8% Onboarding Success", 2], ["Play Store 2.3 → 4.3", 2], ["13M+ In-App Updates", 1], ["83.8% Task Completion", 1],
+    ["Gov-Tech", 2], ["Fintech", 2], ["Consumer", 1], ["Enterprise", 1], ["AI-Powered Platforms", 2],
+    ["National Identity App", 2], ["Biometric Authentication", 1], ["Security Protocols", 1], ["Strict Regulation", 1],
+    ["Field Research", 2], ["30+ Operators and Residents", 1], ["Generative Research", 1], ["Usability Testing", 1], ["Heuristic Evaluation", 1],
+    ["Funnel Analysis", 2], ["A/B Testing", 2], ["Conversion Optimisation", 1], ["Data-Informed", 1],
+    ["System States", 1], ["Edge Cases", 1], ["Errors and Recovery Paths", 1], ["No Dead Ends", 2],
+    ["Information Architecture", 1], ["Interaction Design", 1], ["High-Fidelity UI", 1], ["Interactive Prototyping", 1],
+    ["Design Systems", 2], ["Component Libraries", 1], ["Specs and Handoff", 1], ["Design QA", 1],
+    ["AI-Powered B2B Media", 1], ["Complex AI Made Clear", 2], ["+40% Engagement", 1], ["+21% Conversion", 1],
+    ["Kubernetes Workflows", 1], ["Multi-Cloud Dashboards", 1], ["Pension Funds", 1], ["Workshops", 1], ["Stakeholder Alignment", 1], ["+25% Client Conversion", 1],
+    ["Bounce Rate 85% → 60%", 1], ["500,000+ Girls Reached", 2], ["11,000 Schools", 1], ["Gamified Learning", 1],
+    ["Design Sprints", 1], ["200+ Screens in a Day", 2], ["Funded on National TV", 1],
+    ["Master of Design", 2], ["Engineering Degree", 1], ["Published Thesis", 1], ["Orchestrated Friction", 1], ["User Agency", 1], ["High-Stakes Identity", 1],
+    ["Accessibility", 1], ["Inclusive Design", 1], ["Localisation", 1], ["Cross-Platform", 1], ["Dashboards and Data Viz", 1],
+    ["Product Thinking", 1], ["Journey Mapping", 1], ["Competitive Analysis", 1],
+    ["Figma", 1], ["Figma Make", 1], ["Figma MCP", 1], ["Claude Code", 1], ["Cursor", 1], ["Vibe-Coding", 2], ["Prompt Engineering", 1],
+    ["Framer", 1], ["Mixpanel", 1], ["Google Analytics", 1], ["Hotjar", 1],
+    ["Letter of Recognition from a CEO", 1], ["3 Awards", 1]
+  ],
+  "summary": "Product Designer with 4+ years of experience building end-to-end digital products across gov-tech, fintech, consumer, enterprise, and AI-powered platforms, backed by a Master's in Design from IIT Hyderabad and a Bachelor's in Engineering. Most recently designed the new Aadhaar app with UIDAI at population scale, turning complex policy, technical, and user requirements into simple, trustworthy experiences through research, data, and systems thinking.",
+  "sections": [
+    {
+      "title": "Professional experience",
+      "items": [
+        {
+          "head": "Unique Identification Authority of India (Aadhaar) · UX Designer · Graduation Project · Oct 2025 – Oct 2026",
+          "points": [
+            "Audited the existing Aadhaar ecosystem across systems, policy constraints, support data, and benchmarks; led generative research and field studies with 30+ operators and residents to identify core UX gaps and shape the new app's foundations.",
+            "Owned UX across Aadhaar App service journeys, a complex system spanning biometric authentication, security protocols, automated and human-verified flows, and strict regulation, partnering closely with engineering, data, and policy teams.",
+            "Designed and shipped Home, profile updates, Services, and biometric lock/unlock journeys, mapping system states, edge cases, errors, and recovery paths so users never hit dead ends; took flows from research and IA through high-fidelity prototypes, specs, engineering handoff, and design QA.",
+            "Used funnel analysis & A/B tests to locate onboarding drop-offs and redesigned the flow, lifting onboarding success by 23.8%.",
+            "Led post-launch usability testing and turned research and product data into shipped improvements: 83.8% task completion in Services, Play Store rating 2.3 to 4.3, 66M+ downloads, and 13M+ in-app updates in 8 months.",
+            "Contributed reusable patterns to the app's design system to keep shared components consistent as services scaled; redesigned Aadhaar's official website for service findability."
+          ]
+        },
+        {
+          "head": "Magnifi.ai (Videoverse) · UI/UX Designer · Dec 2023 – Feb 2025",
+          "points": [
+            "Designed end-to-end experiences for AI-powered B2B media platforms Magnifi.ai and Studio, turning complex AI and automation capabilities into clear workflows for enterprise media teams; led research, usability testing, and heuristic evaluations to improve feature discoverability and adoption.",
+            "Led the marketing website redesign, increasing engagement by 40% and conversion by 21%."
+          ]
+        },
+        {
+          "head": "Lemon Yellow LLP · UI/UX Designer · Sep 2022 – Nov 2023",
+          "points": [
+            "Designed end-to-end experiences for fintech, SaaS, and enterprise cloud clients, including ICICI Prudential Pension Funds, simplifying complex financial journeys, Kubernetes operations, and multi-cloud dashboard workflows.",
+            "Facilitated workshops with engineers, product managers, and executive stakeholders to align on problems, explore solutions, and define product direction; UX proofs of concept contributed to a 25% lift in client conversion."
+          ]
+        },
+        {
+          "head": "Menstrupedia · UX Designer · May 2021 – Sep 2022",
+          "points": [
+            "Led the end-to-end redesign of Menstrupedia's website across research, IA, interaction design, prototyping, usability testing & developer handoff; reduced bounce rate from 85%+ to 60%. Work reached 500,000+ girls across 11,000 schools.",
+            "Took a gamified learning app for adolescents (Trubuddy) from concept to MVP via Google Design Sprints, building a 200+ screen prototype in a day as the sole designer. Received funding on Shark Tank India S1."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Education",
+      "items": [
+        { "head": "Master of Design · IIT Hyderabad · 2024 – 2026", "points": ["Master's thesis: Orchestrated Friction Framework – Designing for User Agency in High-Stakes Identity Interactions (published)."] },
+        { "head": "Bachelor of Technology (Electrical) · SPCE, Mumbai · 2017 – 2021", "points": ["Design Head, Annual Magazine; Co-founder & Vice President, Rotaract Club."] }
+      ]
+    },
+    {
+      "title": "Skills",
+      "items": [
+        { "head": "Design & Systems", "points": ["End-to-End Product Design • Interaction Design • High-Fidelity UI • Interactive Prototyping • Information Architecture • Design Systems & Component Libraries • Cross-Platform (Web, Android & iOS) • Accessibility & Inclusive Design • Localisation • Complex Systems & Enterprise UX • Dashboards & Data Visualisation • AI-Powered Product Design • Design QA & Handoff"] },
+        { "head": "Research, Data & Collaboration", "points": ["Product Thinking • User & Generative Research • Usability Testing • Heuristic Evaluation • Journey Mapping • Competitive Analysis • Funnel Analysis • A/B Testing & Experimentation • Conversion Optimisation • Design Sprints & Workshops"] },
+        { "head": "AI & Tools", "points": ["Figma • FigJam • Figma Make • Figma MCP • Claude Code • Cursor • Vibe-Coding • Prompt Engineering • ChatGPT • Gemini • Miro • Framer • Photoshop • Premiere Pro • Google Analytics • Mixpanel • Hotjar • Jira • Notion"] }
+      ]
+    },
+    {
+      "title": "Recognition",
+      "items": [
+        { "head": "", "points": ["Letter of Recognition – UIDAI CEO, Aadhaar App launch · 2026", "Orchestrated Friction Framework – Published, IIT Hyderabad · 2026", "Key Contributor Award – Lemon Yellow LLP · 2023", "Star Employee Award – Menstrupedia · 2022"] }
+      ]
+    }
+  ]
+}

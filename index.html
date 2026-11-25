@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Still Jobless: what 2026 design jobs wanted, and what they thought of me</title>
+  <meta name="description" content="I scanned 378 design job descriptions and 121 of my own applications. A data story told on a computer that is older than the AI hype." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Silkscreen&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <a class="skip" href="#readme">Skip the boot screen</a>
+
+  <header class="menubar" aria-label="Menu bar">
+    <span class="menubar__logo" aria-hidden="true">&#9632;</span>
+    <span>File</span><span>Edit</span><span>Career</span><span>Help</span>
+    <span class="menubar__clock" id="clock">DAY 329 OF 2026</span>
+  </header>
+
+  <main>
+    <!-- 1. BOOT -->
+    <section class="boot" id="boot" aria-label="Boot screen">
+      <pre class="boot__text" id="bootText" aria-hidden="true"></pre>
+      <p class="sr-only">JOBLESS-OS is starting. Memory OK. Portfolio OK. 30 resume versions found. Employment not found.</p>
+      <p class="boot__hint" id="bootHint">scroll to continue <span class="blink">_</span></p>
+    </section>
+
+    <!-- 2. README -->
+    <section class="scene" id="readme">
+      <div class="win" data-open>
+        <div class="win__bar"><span class="win__close" aria-hidden="true"></span><h2 class="win__title">README.TXT</h2></div>
+        <div class="win__body prose">
+          <p class="lede">Hi, I'm Riya. I'm a product designer, and in 2026 I became a professional applicant.</p>
+          <p>Every job I wanted asked for AI. So I did two things. I scanned <b data-k="jd.n">378</b> design job descriptions to see what the market actually wants. Then I opened my inbox to see what the market thought of me.</p>
+          <p>This is the report. It runs on the only computer that still believes in me. (My resume is on the desktop, if you'd like to check it for keywords. Everyone else did.)</p>
+        </div>
+      </div>
+      <div class="desk-icons">
+        <button type="button" class="icon icon--btn" id="openResume" aria-haspopup="dialog">
+          <span class="icon__img icon__img--doc" aria-hidden="true"></span>RESUME_V30.DOC
+          <span class="icon__hint">double-click me</span>
+        </button>
+        <div class="icon" aria-hidden="true"><span class="icon__img icon__img--trash"></span>REJECTIONS</div>
+      </div>
+    </section>
+
+    <!-- 3. JD SCAN -->
+    <section class="scene" id="scan">
+      <div class="win win--wide" data-open>
+        <div class="win__bar"><span class="win__close" aria-hidden="true"></span><h2 class="win__title">JD_SCAN.EXE</h2></div>
+        <div class="win__body">
+          <div class="term" aria-hidden="true">
+            <p>&gt; scanning <span data-k="jd.n">378</span> job descriptions from <span data-k="jd.companies">92</span> companies</p>
+            <div class="progress"><div class="progress__fill" id="scanFill"></div></div>
+            <p id="scanStatus">&gt; reading...</p>
+          </div>
+          <h3 class="chart-title">How many design job descriptions mention...</h3>
+          <div class="bars" id="termBars" role="img" aria-label="Share of 378 design job descriptions mentioning each term"></div>
+          <div class="prose">
+            <p><mark>AI</mark> showed up in <b data-k="term.AI">86</b>% of them. Accessibility, the thing that lets everyone use a product, showed up in <b data-k="term.Accessibility">39</b>%.</p>
+            <p>Almost half wanted someone who can <i>thrive in ambiguity</i>. Finally, a requirement I meet.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. MOST AI -->
+    <section class="scene scene--short" id="mostai">
+      <div class="win win--dialog" data-open>
+        <div class="win__bar"><span class="win__close" aria-hidden="true"></span><h2 class="win__title">ALERT</h2></div>
+        <div class="win__body dialog">
+          <span class="dialog__icon" aria-hidden="true">!</span>
+          <div class="prose">
+            <p>One posting said "AI" <b data-k="mostAI.aiCount">32</b> times in <b data-k="mostAI.words">1101</b> words.</p>
+            <p>That's once every <b id="everyN">34</b> words. I counted by hand. (I did not. I wrote a script, which <b data-k="term.Prototype in code">53</b>% of these jobs would like me to do anyway.)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4b. MY FEELINGS ABOUT AI -->
+    <section class="scene" id="feelings">
+      <div class="win win--red" data-open>
+        <div class="win__bar"><span class="win__close" aria-hidden="true"></span><h2 class="win__title">RELATIONSHIP.SYS</h2></div>
+        <div class="win__body">
+          <p class="status">STATUS: IT'S COMPLICATED</p>
+          <div class="prose">
+            <p class="lede">Confession: I hate AI slop.</p>
+            <p>The posters with six fingers. The LinkedIn essays nobody wrote. The portfolios that all look like the same portfolio.</p>
+            <p>But I also use AI every day, for research, prototypes and code. Used well, it's a brilliant tool. Used badly, it's slop with a Series A.</p>
+            <p>So, dear AI: I don't like you. But <span data-k="term.AI">86</span>% of the jobs I want say I have to get along with you. Fine. Let's keep this professional.</p>
+          </div>
+          <div class="btns">
+            <button type="button" class="btn btn--onred" id="termsBtn">Accept terms and conditions</button>
+          </div>
+          <p class="toast toast--onred" id="termsToast" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. SENIORITY -->
+    <section class="scene" id="levels">
+      <div class="win win--wide" data-open>
+        <div class="win__bar"><span class="win__close" aria-hidden="true"></span><h2 class="win__title">SENIORITY.BMP</h2></div>
+        <div class="win__body">
+          <h3 class="chart-title">Every square is one job. Find the junior ones.</h3>
+          <div class="pixgrid" id="levelGrid" role="img" aria-label="378 jobs by seniority"></div>
+          <ul class="legend" id="levelLegend"></ul>
+          <div class="prose">
+            <p>Only <b id="juniorN">14</b> of <span data-k="jd.n">378</span> roles were junior. <b id="staffPct">45</b>% wanted Staff, Lead or higher. Everyone is hiring someone who already has the job.</p>
+            <p>And the more senior the role, the more it wants AI: <b id="aiJunior">57</b>% of junior roles, <b id="aiLead">92</b>% of lead roles.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5b. YEARS OF EXPERIENCE -->
+    <section class="scene" id="years">
+      <div class="win win--wide" data-open>
+        <div class="win__bar"><span class="win__close" aria-hidden="true"></span><h2 class="win__title">EXPERIENCE.CFG</h2></div>
+        <div class="win__body">
+          <h3 class="chart-title">Minimum years of experience asked for, in the <span data-k="years.n">204</span> postings that named a number</h3>
+          <div class="ycols" id="yearCols" role="img" aria-label="Postings by minimum years of experience required"></div>
+          <div class="prose">
+            <p>The median job wants <b data-k="years.median">5</b> years. I have <b data-k="years.myYears">4</b>. I have been exactly one year away from qualifying, all year.</p>
+            <p>Only <b id="y02">17</b> postings would take someone with two years or less. Even the "mid-level" roles were not safe: <b id="midPct">40</b>% of them wanted five or more. One posting wanted <b data-k="years.max">15</b>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. APPLY LOG -->
+    <section class="scene" id="apply">
+      <div class="win win--wide" data-open>
+        <div class="win__bar"><span class="win__close" aria-hidden="true"></span><h2 class="win__title">APPLY.LOG</h2></div>
+        <div class="win__body">
+          <h3 class="chart-title">Applications I sent in 2026, by month</h3>
+          <div class="cols" id="monthCols" role="img" aria-label="Applications sent per month in 2026"></div>
+          <div class="prose">
+            <p>From January to April I applied like a reasonable person. By November I was sending <b id="novN">47</b> a month. On <b id="busyDay">23 November</b> I sent <b id="busyN">15</b> in one day, which is either dedication or a cry for help.</p>
+            <p>Along the way: <b data-k="me.resumeVersions">30</b> versions of my resume, <b data-k="me.coverLetters">20</b> cover letters, and three resumes for one company alone.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. INBOX -->
+    <section class="scene" id="inbox">
+      <div class="win win--wide" data-open>
+        <div class="win__bar"><span class="win__close" aria-hidden="true"></span><h2 class="win__title">INBOX.EXE</h2></div>
+        <div class="win__body">
+          <h3 class="chart-title">What happened to my <span data-k="me.sent">121</span> applications</h3>
+          <div class="envelopes" id="envelopes" role="img" aria-label="121 applications: 45 rejected, 76 with no reply"></div>
+          <ul class="legend">
+            <li><span class="sw sw--sent"></span><b data-k="me.silent">76</b> never replied</li>
+            <li><span class="sw sw--rej"></span><b data-k="me.rejected">45</b> said no</li>
+            <li><span class="sw sw--yes"></span>0 said yes</li>
+          </ul>
+          <div class="prose">
+            <p><b data-k="me.rejected">45</b> rejections. <b data-k="me.silent">76</b> companies that are, I assume, still thinking about it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. REPEAT OFFENDERS -->
+    <section class="scene scene--short" id="repeat">
+      <div class="win" data-open>
+        <div class="win__bar"><span class="win__close" aria-hidden="true"></span><h2 class="win__title">HALL_OF_FAME.DAT</h2></div>
+        <div class="win__body">
+          <table class="tbl" id="repeatTbl">
+            <caption class="chart-title">Companies I applied to the most</caption>
+            <thead><tr><th scope="col">Company</th><th scope="col">Times applied</th><th scope="col">Times hired</th></tr></thead>
+            <tbody></tbody>
+          </table>
+          <p class="prose">Fastest rejection: <b>Amazon</b>, in <b>36 hours</b>. The resume took me longer than that.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. PUNCHLINE -->
+    <section class="scene" id="interview">
+      <div class="win win--dialog win--big" data-open>
+        <div class="win__bar"><span class="win__close" aria-hidden="true"></span><h2 class="win__title">INTERVIEW.EXE</h2></div>
+        <div class="win__body dialog dialog--stack">
+          <div class="score">
+            <div><span class="score__n">0</span><span class="score__l">interviews with a human</span></div>
+            <div><span class="score__n score__n--ai">1</span><span class="score__l">interview with an AI</span></div>
+          </div>
+          <p class="prose lede">The only one who wanted to talk to me in 2026 was an AI.</p>
+          <p class="prose">It did not offer me a job either.</p>
+          <div class="btns">
+            <button type="button" class="btn" id="retryBtn">Retry</button>
+            <button type="button" class="btn" id="applyBtn">Apply again</button>
+          </div>
+          <p class="toast" id="toast" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. CHANGELOG: how the job changed -->
+    <section class="scene" id="changelog">
+      <div class="win win--wide" data-open>
+        <div class="win__bar"><span class="win__close" aria-hidden="true"></span><h2 class="win__title">CHANGELOG.TXT</h2></div>
+        <div class="win__body">
+          <div class="prose">
+            <p class="lede">So, is it me?</p>
+            <p>Maybe a little. But I think the job changed shape while I was busy applying for it. Here is my hypothesis, written the way software explains itself.</p>
+          </div>
+          <div class="log" role="table" aria-label="How the product designer job changed between 2019 and 2026">
+            <div class="log__ver" role="rowgroup">
+              <p class="log__h">DESIGNER.EXE v2019 <span class="log__src">what I was taught (memory, not data)</span></p>
+              <ul>
+                <li>A clean Figma file and a tidy case study got you in the room</li>
+                <li>Process was the product: research, define, ideate, test</li>
+                <li>Junior roles were the front door</li>
+                <li>Designers designed. Engineers built.</li>
+              </ul>
+            </div>
+            <div class="log__ver log__ver--now" role="rowgroup">
+              <p class="log__h">DESIGNER.EXE v2026 <span class="log__src">from the <span data-k="jd.n">378</span> job descriptions</span></p>
+              <ul class="log__list" id="logList"></ul>
+              <p class="log__known"><span class="tag tag--bug">KNOWN ISSUE</span> "Designer" now means designer, product manager and front-end engineer. Salary not updated.</p>
+            </div>
+          </div>
+          <div class="prose">
+            <p>My guess: companies are hiring fewer people and expecting each one to cover more ground, with AI as both the reason and the tool. The door at the bottom got smaller.</p>
+            <p>But look at the KEPT lines. Craft and talking to real people are still on most of the lists. That part was always the job, and it is the part a model can't do for you.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. PLAN B -->
+    <section class="scene" id="planb">
+      <div class="win win--wide" data-open>
+        <div class="win__bar"><span class="win__close" aria-hidden="true"></span><h2 class="win__title">PLAN_B.EXE</h2></div>
+        <div class="win__body">
+          <div class="term" aria-hidden="true">
+            <p>&gt; if (market.wants === "AI") me.learn("AI")</p>
+            <p id="planbLine">&gt; compiling new personality...</p>
+          </div>
+          <div class="prose">
+            <p class="lede">So I did what 86% of job descriptions told me to.</p>
+            <p>I started building with AI. Agents, vibe coding, the whole thing. I made a lot of websites. Most of them you will never see. This is the first one I was brave enough to publish.</p>
+          </div>
+          <div class="days days--small" id="days">
+            <div class="day day--secret"><span class="day__n">PROJECT 0.1</span><span class="day__t">UNPUBLISHED</span></div>
+            <div class="day day--secret"><span class="day__n">PROJECT 0.2</span><span class="day__t">UNPUBLISHED</span></div>
+            <div class="day day--secret"><span class="day__n">PROJECT 0.3</span><span class="day__t">UNPUBLISHED</span></div>
+            <div class="day day--secret"><span class="day__n">PROJECT 0.4</span><span class="day__t">UNPUBLISHED</span></div>
+            <div class="day day--secret"><span class="day__n">PROJECT 0.5</span><span class="day__t">UNPUBLISHED</span></div>
+            <div class="day day--secret"><span class="day__n">PROJECT 0.6</span><span class="day__t">TOO PERSONAL</span></div>
+          </div>
+          <div class="days days--big">
+            <div class="day day--today"><span class="day__n">PROJECT 1.0 · PUBLISHED</span><span class="day__t">Still Jobless</span><span class="day__d">the page you are reading</span></div>
+            <div class="day day--next"><span class="day__n">PROJECT 2.0</span><span class="day__t">loading<span class="blink">_</span></span><span class="day__d">depends on how this one goes</span></div>
+          </div>
+          <div class="prose">
+            <p>It wrote the code. I decided what was worth saying, and to whom. Turns out that is still the design part.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. THE ASK -->
+    <section class="scene" id="ask">
+      <div class="win win--dialog win--big" data-open>
+        <div class="win__bar"><span class="win__close" aria-hidden="true"></span><h2 class="win__title">NOT_A_BOT.EXE</h2></div>
+        <div class="win__body dialog dialog--stack">
+          <p class="captcha"><span class="captcha__box" aria-hidden="true">x</span> I'm not a robot <span class="captcha__note">(verified, unfortunately)</span></p>
+          <p class="prose lede">I am not an AI. Please stop.</p>
+          <p class="prose">In this economy, recruiters have agents reading resumes and candidates have agents writing them. Nobody is talking to anybody.</p>
+          <p class="prose">So this isn't an application. It's just me, a human, working out what happened to my year. If you've lived the same thing, or you sit on the other side of the hiring table, I'd love one conversation about it.</p>
+          <a class="btn btn--primary" id="bookBtn" href="https://linkedin.com/in/riya-mete-uxd/" target="_blank" rel="noopener">Start a conversation</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13. SHUTDOWN -->
+    <section class="shutdown" id="shutdown">
+      <p class="shutdown__text">It is now safe to talk to me.</p>
+      <p class="shutdown__sub">Riya Mete · product designer · one conversation away <span class="blink">_</span></p>
+    </section>
+  </main>
+
+  <!-- RESUME POP-UP -->
+  <div class="modal" id="resumeModal" hidden>
+    <div class="win win--resume" role="dialog" aria-modal="true" aria-labelledby="resumeTitle">
+      <div class="win__bar">
+        <span class="win__close" aria-hidden="true"></span>
+        <h2 class="win__title" id="resumeTitle">RESUME_V30.DOC</h2>
+        <button type="button" class="win__x" id="closeResume" aria-label="Close resume">[X] CLOSE</button>
+      </div>
+      <div class="finder">
+        <div class="toggle" role="group" aria-label="Resume view">
+          <button type="button" class="toggle__btn" data-view="keywords" aria-pressed="true">KEYWORDS</button>
+          <button type="button" class="toggle__btn" data-view="normal" aria-pressed="false">NORMAL</button>
+          <span class="toggle__hint" id="viewHint">the version the robots read</span>
+        </div>
+        <label for="kw" class="finder__label">FIND:</label>
+        <input id="kw" type="search" autocomplete="off" placeholder="search the keyword they want..." />
+        <div class="finder__chips" aria-label="Try a keyword">
+          <button type="button" class="chip">AI</button><button type="button" class="chip">agents</button><button type="button" class="chip">craft</button><button type="button" class="chip">ambiguity</button><button type="button" class="chip">accessibility</button><button type="button" class="chip">research</button>
+        </div>
+        <p class="finder__out" id="kwOut" role="status" aria-live="polite">Type a keyword. I'll tell you if I have it, and how many job descriptions wanted it.</p>
+      </div>
+      <div class="resume" id="resumeDoc"></div>
+    </div>
+  </div>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

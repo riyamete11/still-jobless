@@ -1,0 +1,210 @@
+{
+ "jd": {
+  "n": 378,
+  "companies": 92,
+  "medianWords": 939,
+  "terms": [
+   {
+    "label": "AI",
+    "pct": 86
+   },
+   {
+    "label": "Craft",
+    "pct": 75
+   },
+   {
+    "label": "User research",
+    "pct": 70
+   },
+   {
+    "label": "Prototype in code",
+    "pct": 53
+   },
+   {
+    "label": "Thrive in ambiguity",
+    "pct": 47
+   },
+   {
+    "label": "Design systems",
+    "pct": 45
+   },
+   {
+    "label": "Accessibility",
+    "pct": 39
+   },
+   {
+    "label": "AI-native / AI-first",
+    "pct": 33
+   },
+   {
+    "label": "Agents",
+    "pct": 29
+   },
+   {
+    "label": "Names an AI tool",
+    "pct": 19
+   }
+  ],
+  "levels": [
+   {
+    "level": "Junior",
+    "n": 14,
+    "aiPct": 57,
+    "medianMinYears": null
+   },
+   {
+    "level": "Mid",
+    "n": 99,
+    "aiPct": 78,
+    "medianMinYears": 4
+   },
+   {
+    "level": "Senior",
+    "n": 95,
+    "aiPct": 89,
+    "medianMinYears": 5
+   },
+   {
+    "level": "Staff/Lead+",
+    "n": 170,
+    "aiPct": 92,
+    "medianMinYears": 8
+   }
+  ],
+  "mostAI": {
+   "company": "sigmacomputing",
+   "title": "Senior Product Designer, AI ",
+   "aiCount": 32,
+   "words": 1101
+  }
+ },
+ "me": {
+  "sent": 121,
+  "rejected": 45,
+  "silent": 76,
+  "humanInterviews": 0,
+  "aiInterviews": 1,
+  "assessments": 2,
+  "companies": 78,
+  "perMonth": [
+   {
+    "month": "2026-01",
+    "sent": 1,
+    "rejected": 2
+   },
+   {
+    "month": "2026-02",
+    "sent": 2,
+    "rejected": 0
+   },
+   {
+    "month": "2026-03",
+    "sent": 1,
+    "rejected": 0
+   },
+   {
+    "month": "2026-04",
+    "sent": 2,
+    "rejected": 0
+   },
+   {
+    "month": "2026-05",
+    "sent": 9,
+    "rejected": 1
+   },
+   {
+    "month": "2026-06",
+    "sent": 1,
+    "rejected": 3
+   },
+   {
+    "month": "2026-07",
+    "sent": 12,
+    "rejected": 4
+   },
+   {
+    "month": "2026-08",
+    "sent": 13,
+    "rejected": 2
+   },
+   {
+    "month": "2026-09",
+    "sent": 20,
+    "rejected": 9
+   },
+   {
+    "month": "2026-10",
+    "sent": 13,
+    "rejected": 11
+   },
+   {
+    "month": "2026-11",
+    "sent": 47,
+    "rejected": 13
+   }
+  ],
+  "busiestDay": {
+   "date": "2026-11-23",
+   "n": 15
+  },
+  "repeat": [
+   {
+    "company": "Microsoft",
+    "n": 9
+   },
+   {
+    "company": "Google",
+    "n": 8
+   },
+   {
+    "company": "Adobe",
+    "n": 7
+   },
+   {
+    "company": "LinkedIn",
+    "n": 4
+   },
+   {
+    "company": "Amazon",
+    "n": 4
+   }
+  ],
+  "fastestRejection": {
+   "company": "Amazon",
+   "hours": 36
+  },
+  "resumeVersions": 30,
+  "coverLetters": 20
+ },
+ "years": {
+  "n": 204,
+  "buckets": [
+   {
+    "label": "0-2",
+    "n": 17
+   },
+   {
+    "label": "3-4",
+    "n": 36
+   },
+   {
+    "label": "5-6",
+    "n": 75
+   },
+   {
+    "label": "7-9",
+    "n": 51
+   },
+   {
+    "label": "10+",
+    "n": 25
+   }
+  ],
+  "median": 5,
+  "max": 15,
+  "qualifyMe": 53,
+  "myYears": 4,
+  "midWanting5": 21,
+  "midTotal": 53
+ }
+}
