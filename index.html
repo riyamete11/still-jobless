@@ -24,7 +24,7 @@
     <section class="boot" id="boot" aria-label="Boot screen">
       <pre class="boot__text" id="bootText" aria-hidden="true"></pre>
       <p class="sr-only">JOBLESS-OS is starting. Memory OK. Portfolio OK. 30 resume versions found. Employment not found.</p>
-      <p class="boot__hint" id="bootHint">scroll to continue <span class="blink">_</span></p>
+      <p class="boot__hint" id="bootHint">scroll down. it only gets worse <span class="blink">_</span></p>
     </section>
 
     <!-- 2. README -->
@@ -168,29 +168,6 @@
       </div>
     </section>
 
-    <!-- 7b. REJECTION ANATOMY -->
-    <section class="scene" id="anatomy">
-      <div class="win win--wide" data-open>
-        <div class="win__bar"><span class="win__close" aria-hidden="true"></span><h2 class="win__title">ANATOMY_OF_A_NO.EML</h2></div>
-        <div class="win__body">
-          <div class="prose">
-            <p class="lede">Did they blame me?</p>
-            <p>Mostly, they didn't say anything. <b id="noReason">26</b> of the <span data-k="rej.n">43</span> rejections (<span id="noReasonPct">60</span>%) gave no reason at all. Just a polite no, "at this time".</p>
-          </div>
-          <h3 class="chart-title">The reason given, in <span data-k="rej.n">43</span> rejection emails</h3>
-          <div class="bars" id="blameBars" role="img" aria-label="Reasons given in rejection emails"></div>
-          <h3 class="chart-title">And here is the average one, assembled from the phrases they used most</h3>
-          <div class="mail">
-            <div class="mail__head"><span>From: no-reply@somewhere.com</span><span>Subject: An update on your application</span></div>
-            <div class="mail__body" id="mailBody"></div>
-          </div>
-          <div class="prose">
-            <p><b id="complimentN">9</b> of them complimented me first. "Your background is impressive, but..." is my favourite genre of email.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- 8. REPEAT OFFENDERS -->
     <section class="scene scene--short" id="repeat">
       <div class="win" data-open>
@@ -226,34 +203,32 @@
       </div>
     </section>
 
-    <!-- 10. CHANGELOG: how the job changed -->
-    <section class="scene" id="changelog">
+    <!-- 10. ORG CHART: is it me? -->
+    <section class="scene" id="orgchart">
       <div class="win win--wide" data-open>
-        <div class="win__bar"><span class="win__close" aria-hidden="true"></span><h2 class="win__title">CHANGELOG.TXT</h2></div>
+        <div class="win__bar"><span class="win__close" aria-hidden="true"></span><h2 class="win__title">ORG_CHART.BMP</h2></div>
         <div class="win__body">
           <div class="prose">
             <p class="lede">So, is it me?</p>
-            <p>Maybe a little. But I think the job changed shape while I was busy applying for it. Here is my hypothesis, written the way software explains itself.</p>
+            <p>Maybe a little. But I started designing in 2021, and since then my job description has quietly eaten four other job descriptions.</p>
           </div>
-          <div class="log" role="table" aria-label="How the product designer job changed between 2019 and 2026">
-            <div class="log__ver" role="rowgroup">
-              <p class="log__h">DESIGNER.EXE v2019 <span class="log__src">what I was taught (memory, not data)</span></p>
-              <ul>
-                <li>A clean Figma file and a tidy case study got you in the room</li>
-                <li>Process was the product: research, define, ideate, test</li>
-                <li>Junior roles were the front door</li>
-                <li>Designers designed. Engineers built.</li>
-              </ul>
+          <div class="org" role="img" aria-label="In 2021 a product team had a designer, product manager, front-end engineer, researcher and data analyst. In 2026 job descriptions ask one designer to cover all of those, plus AI.">
+            <div class="org__col">
+              <p class="org__h">2021 <span>a team, as I remember it</span></p>
+              <div class="team" id="team"></div>
             </div>
-            <div class="log__ver log__ver--now" role="rowgroup">
-              <p class="log__h">DESIGNER.EXE v2026 <span class="log__src">from the <span data-k="jd.n">378</span> job descriptions</span></p>
-              <ul class="log__list" id="logList"></ul>
-              <p class="log__known"><span class="tag tag--bug">KNOWN ISSUE</span> "Designer" now means designer, product manager and front-end engineer. Salary not updated.</p>
+            <div class="org__arrow" aria-hidden="true">&rarr;</div>
+            <div class="org__col org__col--now">
+              <p class="org__h">2026 <span>one person, per <span data-k="jd.n">378</span> job descriptions</span></p>
+              <div class="solo">
+                <div class="hats" id="hats"></div>
+                <span class="px-person px-person--big" aria-hidden="true"></span>
+                <span class="solo__name">"Product Designer"</span>
+              </div>
             </div>
           </div>
           <div class="prose">
-            <p>My guess: companies are hiring fewer people and expecting each one to cover more ground, with AI as both the reason and the tool. The door at the bottom got smaller.</p>
-            <p>But look at the KEPT lines. Craft and talking to real people are still on most of the lists. That part was always the job, and it is the part a model can't do for you.</p>
+            <p>Same one person. Same salary, I assume.</p>
           </div>
         </div>
       </div>
@@ -297,8 +272,7 @@
         <div class="win__bar"><span class="win__close" aria-hidden="true"></span><h2 class="win__title">HUMAN_TO_HUMAN.EXE</h2></div>
         <div class="win__body dialog dialog--stack">
           <p class="prose lede">Let's talk human to human.</p>
-          <p class="prose">In this economy, recruiters have agents reading resumes and candidates have agents writing them. Nobody is talking to anybody.</p>
-          <p class="prose">So let's skip all that. No agents, no assessments, no "we'll keep your details on file". Just two humans, thirty minutes, and whatever you're drinking.</p>
+          <p class="prose">In this economy, agents write the resumes and agents read the resumes. Nobody is actually talking to anybody. So, let's talk.</p>
           <a class="btn btn--primary" id="bookBtn" href="https://linkedin.com/in/riya-mete-uxd/" target="_blank" rel="noopener">Start a conversation</a>
         </div>
       </div>
@@ -306,8 +280,8 @@
 
     <!-- 13. SHUTDOWN -->
     <section class="shutdown" id="shutdown">
-      <p class="shutdown__text">It is now safe to talk to me.</p>
-      <p class="shutdown__sub">Riya Mete · product designer · one conversation away <span class="blink">_</span></p>
+      <p class="shutdown__text">After careful consideration, I've decided to move forward with you.</p>
+      <p class="shutdown__sub">Riya Mete · product designer · replies faster than Amazon rejects <span class="blink">_</span></p>
     </section>
   </main>
 

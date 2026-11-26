@@ -40,7 +40,7 @@ $("#clock").textContent = `DAY ${day} OF 2026 · STILL LOOKING`;
 // ---------- boot screen ----------
 const bootLines = [
   "JOBLESS-OS v2026.11",
-  "(c) 1994-2026  no rights reserved, no offers received",
+  "(c) 2000-2026  no rights reserved, no offers received",
   "",
   "Checking memory ............ 640K OK",
   "Checking portfolio ......... OK",
@@ -59,7 +59,7 @@ async function boot() {
     await sleep(line.includes("NOT FOUND") ? 700 : 120);
   }
   for (let i = 0; i < 3; i++) { out.textContent += "."; await sleep(380); }
-  out.textContent += " ERROR\n\nPress any key to keep applying.";
+  out.textContent += " ERROR";
   $("#bootHint").classList.add("on");
 }
 boot();
@@ -103,17 +103,10 @@ Y.buckets.forEach((b) => {
   ycols.insertAdjacentHTML("beforeend", `<div class="ycol${mine ? " mine" : ""}">${mine ? '<span class="ycol__me">ME</span>' : ""}<span class="ycol__n">${b.n}</span><span class="ycol__bar" data-h="${Math.round((b.n / ymax) * 78)}"></span><span class="ycol__l">${b.label} YRS</span></div>`);
 });
 
-const pct = (label) => jd.terms.find((t) => t.label === label)?.pct;
-const logRows = [
-  ["added", "ADDED", `AI, in ${pct("AI")}% of job descriptions`],
-  ["added", "ADDED", `Prototype in code, ${pct("Prototype in code")}%`],
-  ["added", "ADDED", `"AI-native" ${pct("AI-native / AI-first")}%, agents ${pct("Agents")}%`],
-  ["chg", "CHANGED", `Median experience asked: ${Y.median} years`],
-  ["dep", "DEPRECATED", `Junior roles: ${level("Junior").n} of ${jd.n}`],
-  ["kept", "KEPT", `Craft, ${pct("Craft")}%`],
-  ["kept", "KEPT", `User research, ${pct("User research")}%`],
-];
-$("#logList").innerHTML = logRows.map(([c, t, txt]) => `<li><span class="tag tag--${c}">${t}</span><span>${txt}</span></li>`).join("");
+// ---------- org chart: one designer, many hats ----------
+const hats = data.hats;
+$("#team").innerHTML = hats.filter((h) => !h.isNew).map((h) => `<div class="mate"><span class="px-person" aria-hidden="true"></span><span class="mate__role">${h.role}</span></div>`).join("");
+$("#hats").innerHTML = hats.slice().reverse().map((h) => `<div class="hat${h.isNew ? " hat--new" : ""}"><span class="hat__role">${h.role}${h.isNew ? " (new)" : ""}</span><span class="hat__pct">${h.ask} · ${h.pct}%</span></div>`).join("");
 
 const tbody = $("#repeatTbl tbody");
 me.repeat.slice(0, 3).forEach((r) => {
@@ -154,13 +147,10 @@ const runs = {
   years: async () => {
     ycols.querySelectorAll(".ycol__bar").forEach((b, i) => setTimeout(() => (b.style.height = b.dataset.h + "%"), reduced ? 0 : i * 120));
   },
-  changelog: async () => {
-    const list = $("#logList");
-    list.classList.add("go");
-    if (reduced) return;
-    const items = [...list.children];
-    items.forEach((li) => (li.style.opacity = 0));
-    for (const li of items) { await sleep(260); li.style.opacity = 1; }
+  orgchart: async () => {
+    // the hats drop onto one person, bottom of the stack first
+    const items = [...$("#hats").children].reverse();
+    for (const h of items) { h.classList.add("on"); await sleep(reduced ? 0 : 380); }
   },
   planb: async () => {
     await sleep(400);
@@ -187,23 +177,7 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.35 });
 document.querySelectorAll(".scene").forEach((s) => io.observe(s));
 
-// ---------- rejection anatomy ----------
 const R = data.rej;
-const ph = (label) => R.phrases.find((p) => p.label === label) || { n: 0, pct: 0 };
-$("#blameBars").innerHTML = R.blame.filter((b) => b.n > 0).map((b, i) => `<div class="bar${i === 0 ? " bar--hot" : ""}"><span>${b.label}</span><span class="bar__track"><span class="bar__fill" data-w="${Math.round((100 * b.n) / R.n)}"></span></span><span class="bar__pct">${b.n}</span></div>`).join("");
-$("#noReason").textContent = R.blame[0].n;
-$("#noReasonPct").textContent = Math.round((100 * R.blame[0].n) / R.n);
-$("#complimentN").textContent = ph("Your background is impressive, but...").n;
-const tag = (label) => `<span class="mail__tag">${ph(label).n} of ${R.n}</span>`;
-$("#mailBody").innerHTML = `
-  <p><mark class="mail__hl">Thank you for your time</mark>${tag("Thank you for your time")} and interest in the role.</p>
-  <p><mark class="mail__hl">After careful consideration</mark>${tag("After careful consideration")}, we've decided to <mark class="mail__hl">move forward with other candidates</mark>${tag("We've decided to move forward with other candidates")} <mark class="mail__hl">at this time</mark>${tag("At this time")}.</p>
-  <p><mark class="mail__hl">We'll keep your details on file</mark>${tag("We'll keep your details on file")} for future opportunities.</p>
-  <p><mark class="mail__hl">We wish you the best of luck</mark>${tag("We wish you the best of luck")} in your search.</p>
-  <p class="mail__sig">The Talent Team<br><span class="mail__no">no-reply@</span></p>`;
-runs.anatomy = async () => {
-  $("#blameBars").querySelectorAll(".bar__fill").forEach((f, i) => setTimeout(() => (f.style.width = f.dataset.w + "%"), reduced ? 0 : i * 120));
-};
 
 // ---------- the REJECTIONS pile ----------
 const rejModal = $("#rejModal");

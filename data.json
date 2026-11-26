@@ -207,6 +207,39 @@
   "midWanting5": 21,
   "midTotal": 53
  },
+ "hats": [
+  {
+   "role": "Designer",
+   "ask": "craft",
+   "pct": 75
+  },
+  {
+   "role": "Product manager",
+   "ask": "end-to-end ownership",
+   "pct": 44
+  },
+  {
+   "role": "Front-end engineer",
+   "ask": "prototype in code",
+   "pct": 53
+  },
+  {
+   "role": "Researcher",
+   "ask": "user research",
+   "pct": 70
+  },
+  {
+   "role": "Data analyst",
+   "ask": "metrics and A/B tests",
+   "pct": 37
+  },
+  {
+   "role": "AI whisperer",
+   "ask": "AI",
+   "pct": 86,
+   "isNew": true
+  }
+ ],
  "rej": {
   "n": 43,
   "phrases": [
