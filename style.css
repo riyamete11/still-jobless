@@ -66,8 +66,10 @@ mark { background: var(--red); color: var(--paper); padding: 0 4px; }
 .boot__hint.on { opacity: 1; }
 
 /* scenes */
-.scene { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 12vh 4vw; position: relative; }
-.scene--short { min-height: 70vh; }
+/* every window gets the same gap above and below, whatever its height */
+.scene { display: flex; align-items: center; justify-content: center; padding: 9vh 4vw; position: relative; }
+.boot + .scene { padding-top: 14vh; }
+#ask { padding-bottom: 18vh; }
 
 /* windows */
 .win {
@@ -377,7 +379,8 @@ body.waiting, body.waiting * { cursor: wait !important; }
 
 /* shutdown */
 .shutdown { min-height: 100vh; background: #000; color: #f0a640; display: grid; place-content: center; text-align: center; padding: 4vw; }
-.shutdown__text { font-size: clamp(36px, 7vw, 76px); margin: 0 0 14px; }
+.shutdown__text { font-size: clamp(34px, 5.2vw, 64px); line-height: 1.15; margin: 0 auto 26px; max-width: 18em; }
+.shutdown__mid { font-size: clamp(22px, 3vw, 32px); margin: 0 auto 28px; max-width: 26em; color: #c98a35; }
 .shutdown__sub { font-family: var(--label); font-size: 13px; margin: 0; }
 
 @media (max-width: 700px) {
@@ -399,7 +402,8 @@ body.waiting, body.waiting * { cursor: wait !important; }
   .col__n { font-size: 16px; }
   .score__n { font-size: 84px; }
   .win__body { padding: 18px; }
-  .menubar span:not(.menubar__logo):not(.menubar__clock) { display: none; }
+  .menubar { gap: 12px; }
+  .menubar__clock { font-size: 11px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

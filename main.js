@@ -35,7 +35,7 @@ $("#midPct").textContent = Math.round((100 * Y.midWanting5) / Y.midTotal);
 
 const start = new Date("2026-01-01T00:00:00");
 const day = Math.min(365, Math.floor((Date.now() - start) / 864e5) + 1);
-$("#clock").textContent = `DAY ${day} OF 2026 · STILL LOOKING`;
+$("#clock").textContent = `DAY ${day} OF 2026 · STILL LOOKING FOR A JOB`;
 
 // ---------- boot screen ----------
 const bootLines = [
@@ -165,17 +165,30 @@ const runs = {
   },
 };
 
+const opened = new Set();
+function openScene(sec) {
+  if (opened.has(sec)) return;
+  opened.add(sec);
+  io.unobserve(sec);
+  (sec.querySelector(".win") || sec).classList.add("is-open");
+  const run = runs[sec.id];
+  if (run) setTimeout(run, reduced ? 0 : 320);
+}
 const io = new IntersectionObserver((entries) => {
-  for (const e of entries) {
-    if (!e.isIntersecting) continue;
-    io.unobserve(e.target);
-    const win = e.target.querySelector(".win") || e.target;
-    win.classList.add("is-open");
-    const run = runs[e.target.id];
-    if (run) setTimeout(run, reduced ? 0 : 320);
-  }
-}, { threshold: 0.35 });
-document.querySelectorAll(".scene").forEach((s) => io.observe(s));
+  for (const e of entries) if (e.isIntersecting) openScene(e.target);
+}, { threshold: 0.25 });
+const scenes = [...document.querySelectorAll(".scene")];
+scenes.forEach((s) => io.observe(s));
+// backup for fast scrolling: open anything whose top has already come into view
+let scrollTick = false;
+addEventListener("scroll", () => {
+  if (scrollTick) return;
+  scrollTick = true;
+  requestAnimationFrame(() => {
+    scrollTick = false;
+    for (const s of scenes) if (!opened.has(s) && s.getBoundingClientRect().top < innerHeight * 0.75) openScene(s);
+  });
+}, { passive: true });
 
 const R = data.rej;
 
