@@ -242,7 +242,13 @@ const resume = await fetch("./resume.json").then((r) => r.json());
 let vocab = null;
 const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 const reEsc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-const termRe = (q) => new RegExp(`(^|[^a-z0-9])(${reEsc(q)})`, "gi");
+const termRe = (q) => {
+  const tokens = q.toLowerCase().split(/[^a-z0-9+#]+/).filter(Boolean);
+  if (!tokens.length) return /$^/g;
+  const inner = (t) => [...t].map(reEsc).join(t.length >= 4 ? "[\\s/\\-.]?" : "[/\\-.]?");
+  return new RegExp(`(^|[^a-z0-9])(${tokens.map(inner).join("[\\s/\\-._&]*")})`, "gi");
+};
+const compact = (x) => x.toLowerCase().replace(/[^a-z0-9+#]/g, "");
 
 let view = "keywords";
 let lastQ = "";
@@ -288,7 +294,12 @@ async function search(raw) {
   const singular = (x) => x.replace(/s$/, "");
   const aiTerm = key === "ai" ? jd.terms.find((x) => x.label === "AI") : jd.terms.find((x) => singular(x.label.toLowerCase()) === singular(key));
   let shown = q;
-  let n = aiTerm ? Math.round((aiTerm.pct / 100) * vocab.n) : words <= 2 ? vocab.df[key] || 0 : null;
+  let n = aiTerm ? Math.round((aiTerm.pct / 100) * vocab.n) : words <= 3 ? vocab.df[key] || 0 : null;
+  if (n === 0) {
+    vocab.compact ??= Object.entries(vocab.df).reduce((m, [k, v]) => { const c = compact(k); if (!m[c] || v > m[c][1]) m[c] = [k, v]; return m; }, {});
+    const hit = vocab.compact[compact(q)];
+    if (hit) { n = hit[1]; shown = hit[0]; }
+  }
   if (n === 0 && words === 1 && key.length >= 3) {
     let best = null;
     for (const [k, v] of Object.entries(vocab.df)) if (!k.includes(" ") && k.startsWith(key) && (!best || v > best[1])) best = [k, v];
