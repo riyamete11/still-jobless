@@ -154,7 +154,7 @@ const runs = {
   },
   planb: async () => {
     await sleep(400);
-    $("#planbLine").textContent = "> learning AI... in progress. project 001 shipped.";
+    $("#planbLine").textContent = "> me.postsAbout(\"AI\")   // starting now. apparently that's the part that counts";
     for (const d of document.querySelectorAll("#planb .day")) { d.classList.add("on"); await sleep(120); }
   },
   inbox: async () => {
