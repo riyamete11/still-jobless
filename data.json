@@ -80,8 +80,8 @@
  },
  "me": {
   "sent": 121,
-  "rejected": 43,
-  "silent": 78,
+  "rejected": 47,
+  "silent": 74,
   "humanInterviews": 0,
   "aiInterviews": 1,
   "assessments": 2,
@@ -140,7 +140,7 @@
    {
     "month": "2026-11",
     "sent": 47,
-    "rejected": 12
+    "rejected": 16
    }
   ],
   "busiestDay": {
@@ -241,63 +241,63 @@
   }
  ],
  "rej": {
-  "n": 43,
+  "n": 47,
   "phrases": [
    {
     "label": "At this time",
-    "n": 25,
-    "pct": 58
+    "n": 27,
+    "pct": 57
    },
    {
     "label": "Thank you for your time",
-    "n": 22,
+    "n": 24,
     "pct": 51
    },
    {
     "label": "We wish you the best of luck",
-    "n": 22,
+    "n": 24,
     "pct": 51
    },
    {
     "label": "After careful consideration",
-    "n": 20,
+    "n": 22,
     "pct": 47
    },
    {
     "label": "We've decided to move forward with other candidates",
-    "n": 15,
-    "pct": 35
+    "n": 17,
+    "pct": 36
    },
    {
     "label": "We'll keep your details on file",
-    "n": 13,
+    "n": 14,
     "pct": 30
    },
    {
     "label": "Your background is impressive, but...",
-    "n": 9,
+    "n": 10,
     "pct": 21
+   },
+   {
+    "label": "Candidates who more closely match",
+    "n": 8,
+    "pct": 17
    },
    {
     "label": "We received a high volume of applications",
     "n": 6,
-    "pct": 14
-   },
-   {
-    "label": "Candidates who more closely match",
-    "n": 6,
-    "pct": 14
+    "pct": 13
    },
    {
     "label": "The role is closed / on hold",
     "n": 2,
-    "pct": 5
+    "pct": 4
    }
   ],
   "blame": [
    {
     "label": "No reason given",
-    "n": 26,
+    "n": 28,
     "who": "nobody"
    },
    {
@@ -307,7 +307,7 @@
    },
    {
     "label": "Someone else matched better",
-    "n": 6,
+    "n": 8,
     "who": "my experience (politely)"
    },
    {

@@ -191,6 +191,10 @@ addEventListener("scroll", () => {
 }, { passive: true });
 
 const R = data.rej;
+// keep the fixed labels in step with the data
+$("#rejHint").textContent = `${R.n} items`;
+$("#rejTitle").textContent = `REJECTIONS (${R.n} ITEMS)`;
+$("#envelopes").setAttribute("aria-label", `${me.sent} applications: ${me.rejected} rejected, ${me.silent} with no reply`);
 
 // ---------- the REJECTIONS pile ----------
 const rejModal = $("#rejModal");
